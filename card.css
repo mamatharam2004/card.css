@@ -1,144 +1,164 @@
-
-@import url("https://fonts.cdnfonts.com/css/samsung-sharp-sans-regular");
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 * {
   margin: 0;
   padding: 0;
-  font-family: "Samsung Sharp Sans Bold", sans-serif;
-  line-height: 1.4;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  background-color: #000000;
+  background: transparent;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Container holding the card */
 .card_container {
-  perspective: 1000px;
-  width: 350px;
-  height: 250px;
-  margin: 100px auto;
+  perspective: 1200px;
+  width: 360px;
+  height: 260px;
 }
 
-/* Flip card base */
 .card {
   width: 100%;
   height: 100%;
+  padding: 3px;
+  background: linear-gradient(270deg, #ff0080, #7928ca, #00ffff, #ff0080);
+  background-size: 600% 600%;
+  animation: animatedBorder 5s linear infinite;
+  border-radius: 20px;
   transform-style: preserve-3d;
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.8s ease;
+  position: relative;
+}
+
+@keyframes animatedBorder {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
 .card_container:hover .card {
   transform: rotateY(180deg);
 }
 
-/* Shared face styles */
 .frontcard,
 .backcard {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 15px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 17px;
   overflow: hidden;
+  background-color: #111;
 }
 
-/* FRONT SIDE STYLES */
+/* FRONT SIDE */
 .frontcard {
-  background-color: #ffffff;
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-image-wrapper {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  padding: 5px;
+  background: linear-gradient(45deg, #ff00cc, #3333ff, #00fff0);
+  background-size: 300% 300%;
+  animation: glow 6s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes glow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .frontcard img {
-  max-width: 80%;
-  display: block;
-  margin: 65px auto;
-  height: 75px;
-  width: 200px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
 }
 
-/* BACK SIDE with flowing gradient BORDER only */
+/* BACK SIDE */
 .backcard {
-  position: relative;
-  padding: 2px; /* Border thickness */
-  border-radius: 15px;
-  background: linear-gradient(90deg, #833ab4, #fd1d1d, #fcb045, #833ab4);
-  background-size: 300% 300%;
-  animation: flow-border 3s linear infinite;
+  background: #000000;
   transform: rotateY(180deg);
+  padding: 0;
+  color: white;
+  border-radius: 17px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
 }
 
-/* Inner content with black background */
 .backcard-content {
-  background-color: #000000;
-  color: #ffffff;
-  border-radius: 13px; /* Slightly smaller than parent for border effect */
-  padding: 16px 20px 12px 20px;
   height: 100%;
   overflow-y: auto;
-  text-align: left;
+  padding: 16px 20px;
+  word-wrap: break-word;
+  scrollbar-width: thin; /* For Firefox */
 }
 
-/* TEXT & BUTTON STYLES */
+/* Optional: Hide scroll on WebKit browsers */
+.backcard-content::-webkit-scrollbar {
+  width: 6px;
+}
+.backcard-content::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 5px;
+}
+
 .name {
-  font-size: 10px;
   text-transform: uppercase;
-  font-weight: 300;
+  font-size: 12px;
+  color: #00ffff;
   letter-spacing: 2px;
-  color: #0047d4;
-  margin-bottom: 8px;
 }
 
 .title {
   font-size: 20px;
-  font-weight: 700;
-  margin: 8px 0;
+  font-weight: 600;
+  margin-top: 4px;
+  color: #ff33cc;
 }
 
 .description {
   font-size: 0.85rem;
-  color: #d8cccc;
-  margin-bottom: 10px;
+  color: #d0d0d0;
+  margin: 10px 0;
+  line-height: 1.4;
 }
 
 strong {
-  color: #6effec;
-  text-transform: capitalize;
+  color: #00ffd5;
 }
 
 .btn {
-  padding: 6px 12px;
-  border: 1px solid #4caf50;
-  background-color: #00ffff;
-  color: rgb(0, 0, 0);
-  border-radius: 8px;
+  padding: 10px 18px;
+  background: linear-gradient(to right, #00f7ff, #7f00ff);
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
   cursor: pointer;
-  font-weight: 700;
-  font-size: 10px;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 5px;
+  transition: 0.4s;
+  box-shadow: 0 0 12px #00f7ff;
+  width: fit-content;
 }
 
 .btn:hover {
-  background-color: #004382;
-  color: white;
-  border-color: #43a047;
-}
-
-/* Animation for gradient border */
-@keyframes flow-border {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
+  background: #ffffff;
+  color: #7f00ff;
+  box-shadow: 0 0 20px #00f7ff;
 }
